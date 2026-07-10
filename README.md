@@ -9,7 +9,7 @@
 
 **このリポジトリを直接 clone する必要はありません。** AMA-teras 本体の
 設定 → 接続タブ → 「コミュニティレジストリURL」に本リポジトリの raw ベースURL
-(例: `https://raw.githubusercontent.com/<owner>/amateras-registry/main`)を設定するだけで:
+(例: `https://raw.githubusercontent.com/moriwo-dev-ai/amateras-registry/main`)を設定するだけで:
 
 1. エージェントが新ツールを作ろうとしたとき、既存プラグインを自動で提案します
 2. 承諾すると本体がダウンロードし、**ローカルの検証ゲート(B環境で typecheck → テスト →
