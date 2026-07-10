@@ -1,6 +1,6 @@
 # AMA-teras Community Registry(進化レジストリ)
 
-[AMA-teras](https://github.com/moriwo-dev-ai) 本体の「自己進化」で生まれたツールプラグインを、
+[AMA-teras](https://github.com/moriwo-dev-ai/ama-teras) 本体の「自己進化」で生まれたツールプラグインを、
 コミュニティで共有するためのレジストリです。コンセプトは **「作る前に探す」** —
 本体アプリはツールを新規生成する前にこの索引を検索し、既存のプラグインがあれば
 生成コストをかけずに導入を提案します。
