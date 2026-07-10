@@ -1,0 +1,20 @@
+# レジストリCI: マニフェスト検証+権限の静的解析(宣言外API使用=自動リジェクト)。
+# 検証ロジックは本体(AMA-teras)の src/main/registry/{manifest,permissions}.ts と
+# 同じルールを依存ゼロの scripts/validate.mjs に移植して同梱している
+# (本体リポジトリを checkout せずに単体で回すため)。
+name: validate
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: マニフェスト検証+権限静的解析+索引整合
+        run: node scripts/validate.mjs

@@ -1,0 +1,15 @@
+{
+  "name": "text_stats",
+  "version": "1.0.0",
+  "pluginApiVersion": "^1",
+  "description": "Compute basic statistics for a given text or file: character count, line count, word count (whitespace-delimited), and byte size (UTF-8). Supports mixed Japanese and English text.",
+  "author": "moriwo-dev-ai",
+  "license": "AGPL-3.0",
+  "permissions": {
+    "network": false,
+    "childProcess": false,
+    "fsScope": "workspace"
+  },
+  "dependencies": [],
+  "smoke": { "input": { "text": "hello world\nこんにちは" } }
+}

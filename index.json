@@ -1,0 +1,14 @@
+{
+  "registryVersion": 1,
+  "plugins": [
+    {
+      "name": "text_stats",
+      "description": "Compute basic statistics for a given text or file: character count, line count, word count (whitespace-delimited), and byte size (UTF-8). Supports mixed Japanese and English text.",
+      "version": "1.0.0",
+      "author": "moriwo-dev-ai",
+      "verified": true,
+      "path": "plugins/text_stats",
+      "files": ["text_stats.ts", "text_stats.test.ts", "manifest.json"]
+    }
+  ]
+}
