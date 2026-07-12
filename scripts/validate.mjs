@@ -157,6 +157,112 @@ if (index) {
   }
 }
 
+// ---- 2b. 神定義(gods/)の検証 ----
+// ルールは本体 src/main/operations/gods.ts の validateGodDefinition と同一に保つこと。
+// 神は「コード」ではなく定義データなので、検証もJSONスキーマの一致で足りる。
+// エンジンは本体が実装している5種のみ(新エンジンは本体のコード変更であり、レジストリでは配れない)
+const GOD_ID_RE = /^[a-z0-9-]{2,40}$/;
+const GOD_ENGINES = new Set([
+  'metrics-observer',
+  'community-patrol',
+  'draft-writer',
+  'issue-gatekeeper',
+  'kamuhakari',
+]);
+const HHMM_RE = /^\d{2}:\d{2}$/;
+
+function validateGodDefinition(where, def) {
+  if (typeof def !== 'object' || def === null) {
+    errors.push(`${where}: 定義がオブジェクトではない`);
+    return null;
+  }
+  if (typeof def.id !== 'string' || !GOD_ID_RE.test(def.id)) errors.push(`${where}: id は英小文字・数字・ハイフン(2〜40字)`);
+  if (typeof def.name !== 'string' || def.name.trim() === '') errors.push(`${where}: name が空`);
+  if (!GOD_ENGINES.has(def.engine)) {
+    errors.push(`${where}: engine は ${[...GOD_ENGINES].join('/')} のいずれか(実際: ${def.engine})`);
+  }
+  const clock = def.clock;
+  if (typeof clock !== 'object' || clock === null || (clock.intervalMin === undefined && clock.dailyTimes === undefined)) {
+    errors.push(`${where}: clock に intervalMin か dailyTimes が必要`);
+  } else {
+    if (clock.intervalMin !== undefined && (typeof clock.intervalMin !== 'number' || !(clock.intervalMin > 0))) {
+      errors.push(`${where}: clock.intervalMin は正の数値`);
+    }
+    if (clock.dailyTimes !== undefined && (!Array.isArray(clock.dailyTimes) || clock.dailyTimes.some((t) => typeof t !== 'string' || !HHMM_RE.test(t)))) {
+      errors.push(`${where}: clock.dailyTimes は "HH:MM" の配列`);
+    }
+  }
+  if (typeof def.dailyTokenBudget !== 'number' || !(def.dailyTokenBudget >= 0)) errors.push(`${where}: dailyTokenBudget は0以上の数値`);
+  if (def.judgePrompt !== undefined && typeof def.judgePrompt !== 'string') errors.push(`${where}: judgePrompt は文字列`);
+  if (def.judgePrompt !== undefined && def.engine !== 'community-patrol') {
+    warnings.push(`${where}: judgePrompt は community-patrol でしか使われない(他エンジンでは無視される)`);
+  }
+  // 迎え入れた人の環境で勝手に走り出さないよう、配布する定義は停止状態で始める
+  if (def.enabled !== false) errors.push(`${where}: 配布する定義は "enabled": false であること(迎えた人が自分で有効化する)`);
+  // 未知のキーは受け入れない(本体は捨てるが、索引に意味ありげな余分を載せさせない)
+  const ALLOWED = new Set(['id', 'name', 'engine', 'clock', 'judgePrompt', 'dailyTokenBudget', 'enabled']);
+  for (const key of Object.keys(def)) {
+    if (!ALLOWED.has(key)) errors.push(`${where}: 未知のキー "${key}"(定義は ${[...ALLOWED].join('/')} のみ)`);
+  }
+  // 定義データに秘密を持たせない(神は資格情報を持たない。認証は本体のsecretsが担う)。
+  // 判定は**値**だけを見る(キー名の dailyTokenBudget を誤検出しないため)
+  const values = [def.id, def.name, def.judgePrompt].filter((v) => typeof v === 'string');
+  if (values.some((v) => /(api[_-]?key|password|secret|bearer\s|sk-[a-z0-9]{8,})/i.test(v))) {
+    errors.push(`${where}: 定義に資格情報らしき文字列がある(神の定義に秘密を含めてはならない)`);
+  }
+  return def;
+}
+
+const godsDir = join(ROOT, 'gods');
+const godDirs = existsSync(godsDir)
+  ? readdirSync(godsDir, { withFileTypes: true }).filter((e) => e.isDirectory()).map((e) => e.name)
+  : [];
+const godDefs = new Map();
+for (const dir of godDirs) {
+  const defPath = join(godsDir, dir, `${dir}.json`);
+  if (!existsSync(defPath)) {
+    errors.push(`gods/${dir}: ${dir}.json が無い(ディレクトリ名=id=ファイル名)`);
+    continue;
+  }
+  let def;
+  try {
+    def = JSON.parse(readFileSync(defPath, 'utf8'));
+  } catch (e) {
+    errors.push(`gods/${dir}: ${dir}.json がJSONとして不正: ${e.message}`);
+    continue;
+  }
+  const validated = validateGodDefinition(`gods/${dir}`, def);
+  if (validated && validated.id !== dir) errors.push(`gods/${dir}: ディレクトリ名と id(${validated.id})が不一致`);
+  godDefs.set(dir, def);
+}
+
+if (index) {
+  // gods[] が無い索引も許容(旧レジストリとの後方互換。本体は空配列として扱う)
+  const gods = index.gods ?? [];
+  if (!Array.isArray(gods)) {
+    errors.push('index.json の gods は配列であること');
+  } else {
+    const indexed = new Set();
+    for (const e of gods) {
+      if (typeof e.id !== 'string' || !GOD_ID_RE.test(e.id)) { errors.push(`index/gods: id 不正: ${JSON.stringify(e.id)}`); continue; }
+      indexed.add(e.id);
+      if (!godDirs.includes(e.id)) { errors.push(`index/gods: gods/${e.id}/ が存在しない`); continue; }
+      if (e.path !== `gods/${e.id}`) errors.push(`index/gods/${e.id}: path は "gods/${e.id}" であること`);
+      if (e.file !== `${e.id}.json`) errors.push(`index/gods/${e.id}: file は "${e.id}.json" であること`);
+      if (typeof e.description !== 'string' || e.description.trim() === '') errors.push(`index/gods/${e.id}: description が空(索引検索の対象)`);
+      if (typeof e.version !== 'string' || !SEMVER_RE.test(e.version)) errors.push(`index/gods/${e.id}: version は semver であること`);
+      if (typeof e.verified !== 'boolean') errors.push(`index/gods/${e.id}: verified は boolean であること`);
+      const def = godDefs.get(e.id);
+      // 索引と定義で engine/name が食い違うと「説明と違う神」を迎えることになる
+      if (def && def.engine !== e.engine) errors.push(`index/gods/${e.id}: engine が定義と不一致(索引=${e.engine} / 定義=${def.engine})`);
+      if (def && def.name !== e.name) errors.push(`index/gods/${e.id}: name が定義と不一致`);
+    }
+    for (const dir of godDirs) {
+      if (!indexed.has(dir)) errors.push(`gods/${dir}/ が index.json に載っていない`);
+    }
+  }
+}
+
 // ---- 3. revoked.json ----
 try {
   const revoked = JSON.parse(readFileSync(join(ROOT, 'revoked.json'), 'utf8'));
@@ -172,4 +278,4 @@ if (errors.length > 0) {
   console.error(`\n検証失敗: ${errors.length}件のエラー`);
   process.exit(1);
 }
-console.log(`✓ 検証OK(プラグイン ${dirs.length}件・警告 ${warnings.length}件)`);
+console.log(`✓ 検証OK(プラグイン ${dirs.length}件・神 ${godDirs.length}件・警告 ${warnings.length}件)`);

@@ -10,5 +10,29 @@
       "path": "plugins/text_stats",
       "files": ["text_stats.ts", "text_stats.test.ts", "manifest.json"]
     }
+  ],
+  "gods": [
+    {
+      "id": "saruta-hiko",
+      "name": "SARUTA-hiko(猿田彦・道案内)",
+      "description": "コミュニティを巡回し、導入・初期設定で詰まっている人(入口で困っている初学者)を見つけて候補に挙げる神。目利きプロンプトを「道案内」向けに差し替えてある。返信は作らず、発信は必ず人間の承認を通る",
+      "engine": "community-patrol",
+      "version": "1.0.0",
+      "author": "moriwo-dev-ai",
+      "verified": true,
+      "path": "gods/saruta-hiko",
+      "file": "saruta-hiko.json"
+    },
+    {
+      "id": "sukuna-bikona",
+      "name": "SUKUNA-bikona(少名毘古那・医薬)",
+      "description": "Issue/PRを30分ごとに見回り、壊れた報告(バグ・不具合)を素早くトリアージする門番。既定の門番より高頻度・高予算に振った設定。報告が集中する公開直後やリリース直後に迎えると効く",
+      "engine": "issue-gatekeeper",
+      "version": "1.0.0",
+      "author": "moriwo-dev-ai",
+      "verified": true,
+      "path": "gods/sukuna-bikona",
+      "file": "sukuna-bikona.json"
+    }
   ]
 }

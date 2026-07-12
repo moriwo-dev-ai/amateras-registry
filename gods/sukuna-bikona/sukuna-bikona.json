@@ -1,0 +1,8 @@
+{
+  "id": "sukuna-bikona",
+  "name": "SUKUNA-bikona(少名毘古那・医薬)",
+  "engine": "issue-gatekeeper",
+  "clock": { "intervalMin": 30 },
+  "dailyTokenBudget": 40000,
+  "enabled": false
+}
