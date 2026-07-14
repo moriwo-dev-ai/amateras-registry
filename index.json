@@ -8,7 +8,24 @@
       "author": "moriwo-dev-ai",
       "verified": true,
       "path": "plugins/text_stats",
-      "files": ["text_stats.ts", "text_stats.test.ts", "manifest.json"]
+      "files": [
+        "text_stats.ts",
+        "text_stats.test.ts",
+        "manifest.json"
+      ]
+    },
+    {
+      "name": "csv_to_json",
+      "description": "CSVテキストをJSONの配列に変換する(1行目をヘッダとして扱う)",
+      "version": "1.0.0",
+      "author": "moriwo-dev-ai",
+      "verified": false,
+      "path": "plugins/csv_to_json",
+      "files": [
+        "csv_to_json.ts",
+        "csv_to_json.test.ts",
+        "manifest.json"
+      ]
     }
   ],
   "gods": [
