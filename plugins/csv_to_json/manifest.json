@@ -1,0 +1,17 @@
+{
+  "name": "csv_to_json",
+  "version": "1.0.0",
+  "pluginApiVersion": "^1",
+  "description": "CSVテキストをJSONの配列に変換する(1行目をヘッダとして扱う)",
+  "author": "moriwo-dev-ai",
+  "license": "AGPL-3.0",
+  "permissions": {
+    "network": false,
+    "childProcess": false,
+    "fsScope": "none"
+  },
+  "dependencies": [],
+  "smoke": {
+    "input": {}
+  }
+}
