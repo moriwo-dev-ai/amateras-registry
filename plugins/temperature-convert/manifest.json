@@ -1,0 +1,21 @@
+{
+  "name": "temperature-convert",
+  "version": "1.0.0",
+  "pluginApiVersion": "^1",
+  "description": "摂氏(Celsius)・華氏(Fahrenheit)・ケルビン(Kelvin)の温度を相互変換するツール。入力として数値 value と変換元単位 from(\"C\"|\"F\"|\"K\")、変換先単位 to(\"C\"|\"F\"|\"K\")を受け取り、変換後の温度数値を返す。単位が同じ場合はそのまま返す。不正な単位指定や絶対零度未満の入力はエラーとして報告する。",
+  "author": "moriwo815",
+  "license": "AGPL-3.0",
+  "permissions": {
+    "network": false,
+    "childProcess": false,
+    "fsScope": "none"
+  },
+  "dependencies": [],
+  "smoke": {
+    "input": {
+      "value": 100,
+      "from": "C",
+      "to": "F"
+    }
+  }
+}

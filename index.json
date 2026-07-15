@@ -8,7 +8,24 @@
       "author": "moriwo-dev-ai",
       "verified": true,
       "path": "plugins/text_stats",
-      "files": ["text_stats.ts", "text_stats.test.ts", "manifest.json"]
+      "files": [
+        "text_stats.ts",
+        "text_stats.test.ts",
+        "manifest.json"
+      ]
+    },
+    {
+      "name": "temperature-convert",
+      "description": "摂氏(Celsius)・華氏(Fahrenheit)・ケルビン(Kelvin)の温度を相互変換するツール。入力として数値 value と変換元単位 from(\"C\"|\"F\"|\"K\")、変換先単位 to(\"C\"|\"F\"|\"K\")を受け取り、変換後の温度数値を返す。単位が同じ場合はそのまま返す。不正な単位指定や絶対零度未満の入力はエラーとして報告する。",
+      "version": "1.0.0",
+      "author": "moriwo815",
+      "verified": false,
+      "path": "plugins/temperature-convert",
+      "files": [
+        "temperature-convert.ts",
+        "temperature-convert.test.ts",
+        "manifest.json"
+      ]
     }
   ],
   "gods": [
