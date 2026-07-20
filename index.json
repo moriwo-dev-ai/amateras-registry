@@ -8,7 +8,24 @@
       "author": "moriwo-dev-ai",
       "verified": true,
       "path": "plugins/text_stats",
-      "files": ["text_stats.ts", "text_stats.test.ts", "manifest.json"]
+      "files": [
+        "text_stats.ts",
+        "text_stats.test.ts",
+        "manifest.json"
+      ]
+    },
+    {
+      "name": "uzume-patrol",
+      "description": "巡回で見つけた投稿・記事から、AMA-terasの一次情報が本当に役立ちそうな会話だけを最大3件選び、URL・文脈・関係理由・返信しない理由を受け箱向けに出す。自動返信案は生成しない。",
+      "version": "1.0.0",
+      "author": "moriwo-dev-ai",
+      "verified": false,
+      "path": "plugins/uzume-patrol",
+      "files": [
+        "uzume-patrol.ts",
+        "uzume-patrol.test.ts",
+        "manifest.json"
+      ]
     }
   ],
   "gods": [
