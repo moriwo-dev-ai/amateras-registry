@@ -8,7 +8,24 @@
       "author": "moriwo-dev-ai",
       "verified": true,
       "path": "plugins/text_stats",
-      "files": ["text_stats.ts", "text_stats.test.ts", "manifest.json"]
+      "files": [
+        "text_stats.ts",
+        "text_stats.test.ts",
+        "manifest.json"
+      ]
+    },
+    {
+      "name": "color_convert",
+      "description": "16進数の色コード(#RRGGBB)とRGB値を相互変換するツールが欲しい",
+      "version": "1.0.0",
+      "author": "moriwo-dev-ai",
+      "verified": false,
+      "path": "plugins/color_convert",
+      "files": [
+        "color_convert.ts",
+        "color_convert.test.ts",
+        "manifest.json"
+      ]
     }
   ],
   "gods": [
