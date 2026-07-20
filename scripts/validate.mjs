@@ -6,6 +6,7 @@
 // 使い方: node scripts/validate.mjs(リポジトリルートで実行。エラーがあれば exit 1)
 import { readdirSync, readFileSync, existsSync } from 'node:fs';
 import { join } from 'node:path';
+import { moduleSpecifiers } from './lib.mjs';
 
 const ROOT = new URL('..', import.meta.url).pathname.replace(/^\/([a-zA-Z]:)/, '$1');
 const errors = [];
@@ -23,13 +24,6 @@ const AGPL_COMPATIBLE = new Set([
 ]);
 const NETWORK_MODULES = new Set(['http', 'https', 'net', 'tls', 'dns', 'dgram', 'http2', 'undici', 'ws']);
 const FS_MODULES = new Set(['fs', 'fs/promises']);
-
-function moduleSpecifiers(code) {
-  const out = [];
-  for (const m of code.matchAll(/(?:from\s*|import\s*\(?\s*|require\s*\(\s*)['"]([^'"]+)['"]/g)) out.push(m[1]);
-  for (const m of code.matchAll(/import\s+['"]([^'"]+)['"]/g)) out.push(m[1]);
-  return out.map((s) => (s.startsWith('node:') ? s.slice(5) : s));
-}
 
 function extractPermissions(code) {
   const mods = moduleSpecifiers(code);
