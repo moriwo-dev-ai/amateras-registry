@@ -1,0 +1,19 @@
+{
+  "name": "color_convert",
+  "version": "1.0.0",
+  "pluginApiVersion": "^1",
+  "description": "16進数の色コード(#RRGGBB)とRGB値を相互変換するツールが欲しい",
+  "author": "moriwo-dev-ai",
+  "license": "AGPL-3.0",
+  "permissions": {
+    "network": false,
+    "childProcess": false,
+    "fsScope": "none"
+  },
+  "dependencies": [],
+  "smoke": {
+    "input": {
+      "hex": "#1e90ff"
+    }
+  }
+}
