@@ -16,5 +16,8 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 22
+      # 検証ロジック自身の回帰テスト。誤検知で投稿者のPRを落とすと原因が分からないので先に回す
+      - name: 検証ロジックの自己テスト
+        run: node scripts/selftest.mjs
       - name: マニフェスト検証+権限静的解析+索引整合
         run: node scripts/validate.mjs
