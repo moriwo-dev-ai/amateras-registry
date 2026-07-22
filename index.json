@@ -8,7 +8,24 @@
       "author": "moriwo-dev-ai",
       "verified": true,
       "path": "plugins/text_stats",
-      "files": ["text_stats.ts", "text_stats.test.ts", "manifest.json"]
+      "files": [
+        "text_stats.ts",
+        "text_stats.test.ts",
+        "manifest.json"
+      ]
+    },
+    {
+      "name": "duration_format",
+      "description": "秒数を \"1h 2m 3s\" 形式の文字列に変換する。0 は \"0s\"、小数秒はミリ秒精度で保持(例: 1.5 → \"1.5s\")、負数は先頭に \"-\" を付ける。入力 { seconds:number } / 出力 { text:string }。",
+      "version": "1.0.0",
+      "author": "moriwo-dev-ai",
+      "verified": false,
+      "path": "plugins/duration_format",
+      "files": [
+        "duration_format.ts",
+        "duration_format.test.ts",
+        "manifest.json"
+      ]
     }
   ],
   "gods": [
