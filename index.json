@@ -8,7 +8,24 @@
       "author": "moriwo-dev-ai",
       "verified": true,
       "path": "plugins/text_stats",
-      "files": ["text_stats.ts", "text_stats.test.ts", "manifest.json"]
+      "files": [
+        "text_stats.ts",
+        "text_stats.test.ts",
+        "manifest.json"
+      ]
+    },
+    {
+      "name": "json_diff",
+      "description": "2つのJSON値を再帰的に比較して差分を出す。追加・削除・変更されたパスをドット記法(例 a.b[0].c)で列挙し、変更は旧値→新値を示す。配列・ネストオブジェクト・型変更に対応。外部依存なしの純粋計算で、結果を {added, removed, changed, same} のJSONで返す。",
+      "version": "1.0.0",
+      "author": "moriwo-dev-ai",
+      "verified": false,
+      "path": "plugins/json_diff",
+      "files": [
+        "json_diff.ts",
+        "json_diff.test.ts",
+        "manifest.json"
+      ]
     }
   ],
   "gods": [
