@@ -1,0 +1,17 @@
+{
+  "name": "duration_format",
+  "version": "1.0.0",
+  "pluginApiVersion": "^1",
+  "description": "秒数を \"1h 2m 3s\" 形式の文字列に変換する。0 は \"0s\"、小数秒はミリ秒精度で保持(例: 1.5 → \"1.5s\")、負数は先頭に \"-\" を付ける。入力 { seconds:number } / 出力 { text:string }。",
+  "author": "moriwo-dev-ai",
+  "license": "AGPL-3.0",
+  "permissions": {
+    "network": false,
+    "childProcess": false,
+    "fsScope": "none"
+  },
+  "dependencies": [],
+  "smoke": {
+    "input": {}
+  }
+}
