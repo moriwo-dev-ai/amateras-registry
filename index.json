@@ -8,7 +8,24 @@
       "author": "moriwo-dev-ai",
       "verified": true,
       "path": "plugins/text_stats",
-      "files": ["text_stats.ts", "text_stats.test.ts", "manifest.json"]
+      "files": [
+        "text_stats.ts",
+        "text_stats.test.ts",
+        "manifest.json"
+      ]
+    },
+    {
+      "name": "candidate_reason",
+      "description": "候補アカウントに「発見の理由」を100〜200字の日本語で添える(神議/uzume-patrol の候補精査用)。account・profile・最近のposts・関連語keywords(省略時はAMA-teras系既定語)を受け取り、(1)どの関連語がプロフィール/どの投稿に一致したか(根拠箇所の抜粋付き)、(2)接触を避けた方がよい兆候(営業・勧誘/金銭・投資話/フォロー稼ぎ/外部誘導/アダルト等のヒューリスティック検出)、をまとめた短い注記と、接触可否の目安(contact_ok/caution/weak_relation)を返す。LLM不要の決定論的処理。注記は参考情報であり、最終的な接触判断は人間が行うこと。",
+      "version": "1.0.0",
+      "author": "moriwo-dev-ai",
+      "verified": false,
+      "path": "plugins/candidate_reason",
+      "files": [
+        "candidate_reason.ts",
+        "candidate_reason.test.ts",
+        "manifest.json"
+      ]
     }
   ],
   "gods": [
