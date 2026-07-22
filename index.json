@@ -8,7 +8,24 @@
       "author": "moriwo-dev-ai",
       "verified": true,
       "path": "plugins/text_stats",
-      "files": ["text_stats.ts", "text_stats.test.ts", "manifest.json"]
+      "files": [
+        "text_stats.ts",
+        "text_stats.test.ts",
+        "manifest.json"
+      ]
+    },
+    {
+      "name": "slugify",
+      "description": "文字列をURLスラッグに変換する。小文字化し、英数字以外はハイフンに置換、連続ハイフンは1つに圧縮し、前後のハイフンを除去する。アクセント付きラテン文字は基底文字に変換する(例: \"Hello, World! 2026\" → \"hello-world-2026\")。結果を {slug} のJSONで返す。",
+      "version": "1.0.0",
+      "author": "moriwo-dev-ai",
+      "verified": false,
+      "path": "plugins/slugify",
+      "files": [
+        "slugify.ts",
+        "slugify.test.ts",
+        "manifest.json"
+      ]
     }
   ],
   "gods": [

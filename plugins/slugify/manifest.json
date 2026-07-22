@@ -1,0 +1,17 @@
+{
+  "name": "slugify",
+  "version": "1.0.0",
+  "pluginApiVersion": "^1",
+  "description": "文字列をURLスラッグに変換する。小文字化し、英数字以外はハイフンに置換、連続ハイフンは1つに圧縮し、前後のハイフンを除去する。アクセント付きラテン文字は基底文字に変換する(例: \"Hello, World! 2026\" → \"hello-world-2026\")。結果を {slug} のJSONで返す。",
+  "author": "moriwo-dev-ai",
+  "license": "AGPL-3.0",
+  "permissions": {
+    "network": false,
+    "childProcess": false,
+    "fsScope": "none"
+  },
+  "dependencies": [],
+  "smoke": {
+    "input": {}
+  }
+}
