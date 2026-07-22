@@ -1,0 +1,17 @@
+{
+  "name": "zenn_reachability_check",
+  "version": "1.0.0",
+  "pluginApiVersion": "^1",
+  "description": "Zenn の「content 側は published:true だが Zenn 上では未反映(読めない)」を自動検出する。slug ごとに Zenn 実 URL(https://zenn.dev/<username>/articles/<slug> 等)へ到達性を確認し、読める(2xx)ものは通常の公開済みとして扱い、読めない(404 等 / 接続失敗)ものだけを god-failure/metrics 形式の受け箱メッセージとして返す。外部への投稿は行わない(読み取り確認のみ)。omoi-kami / saruta-hiko からの検査用。",
+  "author": "moriwo-dev-ai",
+  "license": "AGPL-3.0",
+  "permissions": {
+    "network": true,
+    "childProcess": false,
+    "fsScope": "none"
+  },
+  "dependencies": [],
+  "smoke": {
+    "input": {}
+  }
+}
