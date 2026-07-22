@@ -1,0 +1,17 @@
+{
+  "name": "roman_numeral",
+  "version": "1.0.0",
+  "pluginApiVersion": "^1",
+  "description": "整数(1〜3999)をローマ数字の文字列へ変換する。標準的な減算記法を用いる(例: {n: 2024} → {roman: \"MMXXIV\"})。結果を {roman} のJSONで返す。",
+  "author": "moriwo-dev-ai",
+  "license": "AGPL-3.0",
+  "permissions": {
+    "network": false,
+    "childProcess": false,
+    "fsScope": "none"
+  },
+  "dependencies": [],
+  "smoke": {
+    "input": {}
+  }
+}
