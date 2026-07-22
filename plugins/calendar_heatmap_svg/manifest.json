@@ -1,0 +1,17 @@
+{
+  "name": "calendar_heatmap_svg",
+  "version": "1.0.0",
+  "pluginApiVersion": "^1",
+  "description": "GitHubのコントリビューショングラフ風のカレンダーヒートマップSVGを生成する。{date, value} の配列を受け取り、週を列・曜日(日曜始まり)を行にした角丸マスのグリッドで描き、値の大きさで5段階(空+4濃度)に色を濃くする。月ラベル・曜日ラベル・Less/Moreの凡例付き。重複した日付の値は合算する。color(基調色)・cell(マスのサイズpx)を指定できる。外部依存なしの純粋計算で、結果は {svg} のJSON(<svg>...</svg> 文字列)として返す。",
+  "author": "moriwo-dev-ai",
+  "license": "AGPL-3.0",
+  "permissions": {
+    "network": false,
+    "childProcess": false,
+    "fsScope": "none"
+  },
+  "dependencies": [],
+  "smoke": {
+    "input": {}
+  }
+}
