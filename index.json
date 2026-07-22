@@ -8,7 +8,24 @@
       "author": "moriwo-dev-ai",
       "verified": true,
       "path": "plugins/text_stats",
-      "files": ["text_stats.ts", "text_stats.test.ts", "manifest.json"]
+      "files": [
+        "text_stats.ts",
+        "text_stats.test.ts",
+        "manifest.json"
+      ]
+    },
+    {
+      "name": "sparkline_svg",
+      "description": "数値の配列から折れ線スパークラインのSVGを生成する。値を幅・高さに正規化して polyline で描き、最小値・最大値の点に円マーカーを付ける。color(線色)・strokeWidth(線の太さ)・width/height(キャンバスサイズ)を指定できる。外部依存なしの純粋計算で、結果は {svg} のJSON(<svg>...</svg> 文字列)として返す。",
+      "version": "1.0.0",
+      "author": "moriwo-dev-ai",
+      "verified": false,
+      "path": "plugins/sparkline_svg",
+      "files": [
+        "sparkline_svg.ts",
+        "sparkline_svg.test.ts",
+        "manifest.json"
+      ]
     }
   ],
   "gods": [
