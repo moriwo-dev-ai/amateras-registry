@@ -8,7 +8,24 @@
       "author": "moriwo-dev-ai",
       "verified": true,
       "path": "plugins/text_stats",
-      "files": ["text_stats.ts", "text_stats.test.ts", "manifest.json"]
+      "files": [
+        "text_stats.ts",
+        "text_stats.test.ts",
+        "manifest.json"
+      ]
+    },
+    {
+      "name": "roman_numeral",
+      "description": "整数(1〜3999)をローマ数字の文字列へ変換する。標準的な減算記法を用いる(例: {n: 2024} → {roman: \"MMXXIV\"})。結果を {roman} のJSONで返す。",
+      "version": "1.0.0",
+      "author": "moriwo-dev-ai",
+      "verified": false,
+      "path": "plugins/roman_numeral",
+      "files": [
+        "roman_numeral.ts",
+        "roman_numeral.test.ts",
+        "manifest.json"
+      ]
     }
   ],
   "gods": [
